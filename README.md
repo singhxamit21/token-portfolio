@@ -1,19 +1,26 @@
-# Token Portfolio (Vite + React + Redux + Wagmi)
+🚀 Installation
 
-Pixel-accurate portfolio dashboard inspired by the provided Figma. Uses CoinGecko for search, trending, prices, 24h%, and 7d sparkline. State (watchlist + holdings) is persisted to localStorage.
+Clone the repository:
 
-## Run locally
+git clone https://github.com/singhxamit21/token-portfolio.git
 
-```bash
-npm i
+cd token-portfolio
+
+
+Install dependencies:
+
+npm install
+
+
+Start the development server:
+
 npm run dev
-```
 
-## Notes
-- RainbowKit + wagmi integrated; replace `projectId` in `src/wallet.js` with your WalletConnect Cloud ID.
-- Holdings are editable; Value and Portfolio Total update based on CoinGecko prices.
-- Add Token modal supports Search and Trending. Selected tokens are added to Redux + persisted.
-- Responsive layout matches desktop and mobile screens from the Figma.
-- Simple remove action via row menu icon.
-- Loading/empty/error states included.
-- Performance: small components, memoization, and on-demand fetching.
+
+Open your browser and navigate to http://localhost:5173 to view the application.
+
+🌐 Live Demo
+
+Experience the live version of the dashboard here:
+
+🔗 https://token-portfolio-lac.vercel.app
