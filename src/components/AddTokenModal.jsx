@@ -89,7 +89,6 @@ function AddTokenModal({ open, onClose }) {
           {!loading && !error && list.length === 0 && <div className="p-6 text-muted text-center">No tokens</div>}
         </div>
         <div className="p-4 border-t border-white/5 flex justify-end gap-2">
-          <button className="btn btn-muted" onClick={onClose}>Cancel</button>
           <button className="btn btn-primary disabled:opacity-50" disabled={!Object.values(selected).some(Boolean)} onClick={onSave}>Add to Watchlist</button>
         </div>
       </div>
