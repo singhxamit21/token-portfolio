@@ -59,15 +59,33 @@ function AddTokenModal({ open, onClose }) {
           {!loading && !error && list.map(c => {
             const isSelected = selected[c.id]
             return (
-              <button key={c.id} className="w-full text-left px-4 py-3 hover:bg-white/5 flex items-center gap-3" onClick={() => setSelected(s => ({ ...s, [c.id]: !s[c.id] }))}>
+              <button
+                key={c.id}
+                className="w-full text-left px-4 py-3 hover:bg-white/5 flex items-center gap-3"
+                onClick={() => setSelected(s => ({ ...s, [c.id]: !s[c.id] }))}
+              >
                 <img src={c.large || c.thumb} alt="" className="w-6 h-6 rounded-full" />
                 <div className="flex-1">
-                  <div className="text-sm">{c.name} <span className="text-muted">({(c.symbol || '').toUpperCase()})</span></div>
+                  <div className="text-sm">
+                    {c.name} <span className="text-muted">({(c.symbol || '').toUpperCase()})</span>
+                  </div>
                 </div>
-                {isSelected ? <Star size={14} className="text-green-500 fill-green-500" /> : <div className="w-3 h-3 rounded-full border border-white/20" />}
+                {isSelected ? (
+                  <div className="flex items-center gap-4">
+                    <Star size={14} className="text-green-500 fill-green-500" />           
+                    <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-3 h-3 rounded-full border border-white/20" />
+                )}
               </button>
             )
           })}
+
           {!loading && !error && list.length === 0 && <div className="p-6 text-muted text-center">No tokens</div>}
         </div>
         <div className="p-4 border-t border-white/5 flex justify-end gap-2">
