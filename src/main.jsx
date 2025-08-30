@@ -10,7 +10,6 @@ import App from './App'
 import store from './store'
 import { config } from './wallet'
 
-// ✅ Create one QueryClient instance
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(

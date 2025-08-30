@@ -10,7 +10,7 @@ import trashIcon from "../images/trash.svg";
 
 const pageSize = 10;
 
-export default function WatchlistTable({ onRefresh }) {
+function WatchlistTable({ onRefresh }) {
   const dispatch = useDispatch();
   const { tokens, holdings } = useSelector((s) => s.watchlist);
   const [page, setPage] = useState(1);
@@ -23,7 +23,6 @@ export default function WatchlistTable({ onRefresh }) {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -136,7 +135,7 @@ export default function WatchlistTable({ onRefresh }) {
                     </div>
                   </td>
 
-                  {/* Holdings Cell */}
+              
                   <td className="cell">
                     {editingId === m.id ? (
                       <div className="flex items-center gap-2">
@@ -145,20 +144,27 @@ export default function WatchlistTable({ onRefresh }) {
                           className="input w-28"
                           defaultValue={amount}
                           id={`holding-input-${m.id}`}
+                          step="0.01"
                           onInput={(e) => {
-                            if (e.target.value.length > 10) e.target.value = e.target.value.slice(0, 10);
+                            if (e.target.value.includes('.')) {
+                              const [intPart, decPart] = e.target.value.split('.');
+                              e.target.value = intPart + '.' + decPart.slice(0, 2);
+                            }
                           }}
                         />
+
                         <button
                           className="btn btn-primary"
                           onClick={() => {
                             const input = document.getElementById(`holding-input-${m.id}`);
-                            dispatch(setHolding({ id: m.id, amount: input.value }));
+                            const value = parseFloat(input.value).toFixed(2);
+                            dispatch(setHolding({ id: m.id, amount: value }));
                             setEditingId(null);
                           }}
                         >
                           Save
                         </button>
+
                         <button className="btn btn-muted" onClick={() => setEditingId(null)}>
                           Cancel
                         </button>
@@ -170,7 +176,6 @@ export default function WatchlistTable({ onRefresh }) {
 
                   <td className="cell">{fmtCurrency(value, 2)}</td>
 
-                  {/* Menu */}
                   <td className="cell text-right relative">
                     <button
                       ref={buttonRef}
@@ -241,3 +246,5 @@ export default function WatchlistTable({ onRefresh }) {
     </div>
   );
 }
+
+export default React.memo(WatchlistTable);

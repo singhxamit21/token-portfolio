@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  tokens: [],           // array of CoinGecko IDs
-  holdings: {},         // { [id]: number }
+  tokens: [],       
+  holdings: {},        
   lastUpdated: null
 }
 
